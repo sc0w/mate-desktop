@@ -121,8 +121,8 @@ get_work_area (MateRRLabeler *labeler,
 	/* Defaults in case of error */
 	rect->x = 0;
 	rect->y = 0;
-	rect->width = gdk_screen_get_width (labeler->priv->screen);
-	rect->height = gdk_screen_get_height (labeler->priv->screen);
+	rect->width = WidthOfScreen (gdk_x11_screen_get_xscreen (labeler->priv->screen));
+	rect->height = HeightOfScreen (gdk_x11_screen_get_xscreen (labeler->priv->screen));
 
 	if (workarea == None)
 		return FALSE;

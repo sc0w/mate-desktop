@@ -30,6 +30,7 @@
 #include <math.h>
 #include <string.h>
 
+#include <gdk/gdkx.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <glib/gi18n-lib.h>
@@ -1323,8 +1324,8 @@ popup_position_func (GtkMenu   *menu,
 
   /* Ensure sanity */
   screen = gtk_widget_get_screen (widget);
-  *x = CLAMP (*x, 0, MAX (0, gdk_screen_get_width (screen) - req.width));
-  *y = CLAMP (*y, 0, MAX (0, gdk_screen_get_height (screen) - req.height));
+  *x = CLAMP (*x, 0, MAX (0, WidthOfScreen (gdk_x11_screen_get_xscreen (screen)) - req.width));
+  *y = CLAMP (*y, 0, MAX (0, HeightOfScreen (gdk_x11_screen_get_xscreen (screen)) - req.height));
 }
 
 static void
